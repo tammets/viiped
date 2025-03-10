@@ -7,7 +7,7 @@
 <body class="bg-gray-50 p-8">
 
   <!-- Progress bar -->
-  <nav aria-label="Progress">
+  <nav aria-label="Progress" class="mb-8">
     <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
       <li class="relative md:flex md:flex-1">
         <!-- Completed Step -->
@@ -63,31 +63,19 @@
   <!-- Main Content -->
   <div class="w-full">
 
-    <h2 class="text-xl font-semibold mb-4">Sign Language Grid</h2>
+    <h2 class="text-xl font-semibold mb-4">Sign Language Words</h2>
 
     <div class="mb-4">
-      <label class="font-semibold">Grid Size:</label>
-      <select id="gridSize" class="border p-1 rounded ml-2">
-        <option value="1">1 Square</option>
-        <option value="2">2 Squares</option>
-        <option value="4" selected>4 Squares</option>
-        <option value="6">6 Squares</option>
-        <option value="8">8 Squares</option>
-        <option value="12">12 Squares</option>
-      </select>
-    </div>
-
-    <div class="mb-4">
-      <label class="font-semibold">Pick a word:</label>
+      <label class="font-semibold">Vali sõna:</label>
       <select id="wordPicker" class="border p-1 rounded ml-2">
-        <option value="">-- Select Word --</option>
+        <option value="">-- Vali --</option>
       </select>
-      <button id="addBtn" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Add</button>
+      <button id="addBtn" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Lisa</button>
     </div>
 
     <div id="gridContainer" class="grid grid-cols-2 gap-2"></div>
 
-    <button id="nextBtn" class="bg-blue-500 text-white px-3 py-1 rounded mt-4">Next</button>
+    <button id="nextBtn" class="bg-blue-500 text-white px-3 py-1 rounded mt-4">Järgmine</button>
 
     <div id="videoPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
       <div class="bg-white p-4 rounded relative">

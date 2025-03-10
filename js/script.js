@@ -18,18 +18,92 @@ const words = [
     { word: "Õun", sign: "assets/images/õun.gif", video: "assets/videos/õun.mp4" },
   ];
   
-  // Global array for selected words (only used on editing pages)
+  // Global array for selected words (used on editing pages)
   let selectedWords = [];
   
   document.addEventListener('DOMContentLoaded', () => {
-    // Try to get the grid container element
+    // Get the grid container element (present on all pages)
     const gridContainer = document.getElementById('gridContainer');
   
-    // If gridContainer exists but gridSize is missing, assume we are on save-share.html
-    const gridSizeEl = document.getElementById('gridSize');
+    // Use URL inspection to determine page type.
+    const currentURL = window.location.href;
+    
+    // ----- GRID-EDIT PAGE -----
+    if (currentURL.includes('grid-edit.html')) {
+      // In grid-edit, the grid size select uses the id "location".
+      const gridSizeEl = document.getElementById('location');
+      const nextBtnEl = document.getElementById('nextBtn');
+      // Word picker and add button should be absent (or hidden) on grid-edit.
+      // (If they still exist, we disable/hide them.)
+      const wordPickerEl = document.getElementById('wordPicker');
+      const addBtnEl = document.getElementById('addBtn');
+      const videoPopup = document.getElementById('videoPopup');
+      const popupVideo = document.getElementById('popupVideo');
+      const closePopup = document.getElementById('closePopup');
   
-    if (gridSizeEl) {
-      // We are on an editing page (either grid-edit.html or words-edit.html)
+      if (!gridContainer || !gridSizeEl || !nextBtnEl) {
+        console.error('Missing required elements on grid-edit page.');
+        return;
+      }
+      
+      // Hide word picker and add button if present.
+      if (wordPickerEl) {
+        wordPickerEl.disabled = true;
+        wordPickerEl.style.display = 'none';
+      }
+      if (addBtnEl) {
+        addBtnEl.style.display = 'none';
+      }
+      
+      // Render grid using the selected grid size.
+      function renderGrid() {
+        const gridSize = parseInt(gridSizeEl.value);
+        gridContainer.className = `grid gap-2 grid-cols-${gridSize <= 4 ? gridSize : 4}`;
+        gridContainer.innerHTML = '';
+        // Render empty cells.
+        for (let i = 0; i < gridSize; i++) {
+          const div = document.createElement('div');
+          div.className = 'border p-4 rounded bg-white text-center shadow';
+          div.innerHTML = '<span class="text-gray-400">Sisu puudub</span>';
+          gridContainer.appendChild(div);
+        }
+      }
+      
+      // Allow grid size changes.
+      gridSizeEl.onchange = () => {
+        // Reset any selected words (should be empty here).
+        selectedWords = [];
+        renderGrid();
+      };
+      
+      gridSizeEl.addEventListener('change', function() {
+        localStorage.setItem('gridSize', this.value);
+      });
+      
+      // Next button: save grid size and navigate to words-edit.html.
+      nextBtnEl.onclick = function() {
+        localStorage.setItem('selectedWords', JSON.stringify(selectedWords));
+        localStorage.setItem('gridSize', gridSizeEl.value);
+        window.location.href = 'words-edit.html';
+      };
+      
+      // Initialize render.
+      // If a grid size was saved, restore it.
+      const savedGridSize = localStorage.getItem('gridSize');
+      if (savedGridSize) {
+        gridSizeEl.value = savedGridSize;
+      }
+      renderGrid();
+    }
+    
+    // ----- WORDS-EDIT PAGE -----
+    else if (currentURL.includes('words-edit.html')) {
+      // In words-edit, the grid size select has been removed.
+      // Retrieve the grid size from localStorage.
+      const savedGridSize = localStorage.getItem('gridSize') || '4';
+      const gridSize = parseInt(savedGridSize);
+      
+      // Get the word picker, add button, and next button.
       const wordPickerEl = document.getElementById('wordPicker');
       const addBtnEl = document.getElementById('addBtn');
       const nextBtnEl = document.getElementById('nextBtn');
@@ -37,31 +111,26 @@ const words = [
       const popupVideo = document.getElementById('popupVideo');
       const closePopup = document.getElementById('closePopup');
   
-      // Check for required editing elements
-      if (!wordPickerEl || !gridContainer || !addBtnEl || !nextBtnEl) {
-        console.error('One or more required editing elements are missing.');
+      if (!gridContainer || !wordPickerEl || !addBtnEl || !nextBtnEl) {
+        console.error('Missing required elements on words-edit page.');
         return;
       }
-  
-      // Populate word picker dropdown
+      
+      // Populate the word picker dropdown.
       words.forEach(item => {
         const opt = document.createElement('option');
         opt.value = item.word;
         opt.textContent = item.word;
         wordPickerEl.appendChild(opt);
       });
-  
-      // Render grid based on grid size and selected words
+      
+      // Render grid using the grid size from localStorage.
       function renderGrid() {
-        const gridSize = parseInt(gridSizeEl.value);
-        // If gridSize is 4 or less, use that as number of columns; otherwise default to 4 columns.
         gridContainer.className = `grid gap-2 grid-cols-${gridSize <= 4 ? gridSize : 4}`;
         gridContainer.innerHTML = '';
-  
         for (let i = 0; i < gridSize; i++) {
           const div = document.createElement('div');
           div.className = 'border p-4 rounded bg-white text-center shadow';
-  
           if (selectedWords[i]) {
             div.innerHTML = `
               <img src="${selectedWords[i].sign}" class="inline-block w-46 h-36 cursor-pointer" onclick="playVideo('${selectedWords[i].video}')">
@@ -73,36 +142,30 @@ const words = [
           } else {
             div.innerHTML = '<span class="text-gray-400">Empty</span>';
           }
-  
           gridContainer.appendChild(div);
         }
       }
-  
-      // Move a selected word within the array
+      
+      // Functions to move and remove words.
       function move(index, direction) {
         const newIndex = index + direction;
         if (newIndex < 0 || newIndex >= selectedWords.length) return;
         [selectedWords[index], selectedWords[newIndex]] = [selectedWords[newIndex], selectedWords[index]];
         renderGrid();
       }
-  
-      // Remove a word from the selection
       function remove(index) {
         selectedWords.splice(index, 1);
         renderGrid();
       }
-  
-      // Expose move and remove for inline button handlers
       window.move = move;
       window.remove = remove;
-  
-      // Video popup functionality
+      
+      // Video popup functionality.
       window.playVideo = function(src) {
         popupVideo.src = src;
         videoPopup.classList.remove('hidden');
         videoPopup.classList.add('flex');
       }
-  
       if (closePopup) {
         closePopup.onclick = () => {
           videoPopup.classList.add('hidden');
@@ -112,68 +175,41 @@ const words = [
       } else {
         console.error('Close popup button element not found');
       }
-  
-      // Add word when "Add" is clicked
+      
+      // Enable adding words.
       addBtnEl.onclick = function() {
         const word = wordPickerEl.value;
-        if (!word || selectedWords.length >= parseInt(gridSizeEl.value)) return;
+        if (!word || selectedWords.length >= gridSize) return;
         const foundWord = words.find(w => w.word === word);
         if (foundWord) {
           selectedWords.push(foundWord);
           renderGrid();
         }
       };
-  
-      // Reset selection when grid size changes
-      gridSizeEl.onchange = () => {
-        selectedWords = [];
-        renderGrid();
-      };
-  
-      // Determine next page based on current page URL:
-      // - On grid-edit.html, go to words-edit.html.
-      // - On words-edit.html, go to save-share.html.
-      let nextPage = 'save-share.html';
-      if (window.location.href.includes('grid-edit.html')) {
-        nextPage = 'words-edit.html';
-      } else if (window.location.href.includes('words-edit.html')) {
-        nextPage = 'save-share.html';
-      }
-  
-      // Next button: Save current settings and navigate to the next page.
+      
+      // Next button: Save word selection and navigate to save-share.html.
       nextBtnEl.onclick = function() {
         localStorage.setItem('selectedWords', JSON.stringify(selectedWords));
-        localStorage.setItem('gridSize', gridSizeEl.value);
-        window.location.href = nextPage;
+        // Grid size is already saved from grid-edit.
+        window.location.href = 'save-share.html';
       };
-  
-      // Restore previously saved grid size if available
-      const savedGridSize = localStorage.getItem('gridSize');
-      if (savedGridSize) {
-        gridSizeEl.value = savedGridSize;
-      }
-  
-      // Update localStorage when grid size changes
-      gridSizeEl.addEventListener('change', function() {
-        localStorage.setItem('gridSize', this.value);
-      });
-  
-      // Initial grid render
+      
+      // Initial render.
       renderGrid();
-  
-    } else if (gridContainer) {
-      // If gridSize is missing but gridContainer is present, we assume this is save-share.html.
-      const savedGridSize = localStorage.getItem('gridSize');
+    }
+    
+    // ----- SAVE-SHARE PAGE -----
+    else if (currentURL.includes('save-share.html')) {
+      // In save-share, retrieve saved grid size and selected words.
+      const savedGridSize = localStorage.getItem('gridSize') || '4';
+      const gridSize = parseInt(savedGridSize);
       const savedSelectedWords = JSON.parse(localStorage.getItem('selectedWords')) || [];
-      const gridSize = parseInt(savedGridSize) || 4; // Default to 4 columns if not set.
-  
       gridContainer.className = `grid gap-2 grid-cols-${gridSize <= 4 ? gridSize : 4}`;
       gridContainer.innerHTML = '';
-  
+      
       for (let i = 0; i < gridSize; i++) {
         const div = document.createElement('div');
         div.className = 'border p-4 rounded bg-white text-center shadow';
-  
         if (savedSelectedWords[i]) {
           div.innerHTML = `
             <img src="${savedSelectedWords[i].sign}" class="inline-block w-46 h-36 cursor-pointer" onclick="playVideo('${savedSelectedWords[i].video}')">
@@ -182,21 +218,18 @@ const words = [
         } else {
           div.innerHTML = '<span class="text-gray-400">Empty</span>';
         }
-  
         gridContainer.appendChild(div);
       }
-  
-      // Setup video popup on save-share page if present.
-      const videoPopup = document.getElementById('videoPopup');
+      
+      // Setup video popup.
       const popupVideo = document.getElementById('popupVideo');
+      const videoPopup = document.getElementById('videoPopup');
       const closePopup = document.getElementById('closePopup');
-  
       window.playVideo = function(src) {
         popupVideo.src = src;
         videoPopup.classList.remove('hidden');
         videoPopup.classList.add('flex');
       }
-  
       if (closePopup) {
         closePopup.onclick = () => {
           videoPopup.classList.add('hidden');

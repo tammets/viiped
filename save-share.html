@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign Language Grid</title>
+  <style>
+    @media print {
+      nav[aria-label="Progress"] {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-50 p-8">
 
   <!-- Progress bar -->
-  <nav aria-label="Progress">
+  <nav aria-label="Progress" class="mb-8">
     <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
       <li class="relative md:flex md:flex-1">
         <!-- Completed Step -->

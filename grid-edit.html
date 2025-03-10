@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Language Grid</title>
+</head>
+<body class="bg-gray-50 p-8">
+
+  <!-- Progress bar -->
+  <nav aria-label="Progress">
+    <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+      <li class="relative md:flex md:flex-1">
+        <!-- Active Step -->
+        <a href="grid-edit.html" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="step">
+          <span class="flex items-center">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
+              <span class="text-indigo-600">01</span>
+            </span>
+            <span class="ml-4 text-sm font-medium text-indigo-600">Laotus</span>
+          </span>
+        </a>
+        <!-- Arrow separator for lg screens and up -->
+        <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+          <svg class="size-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </li>
+      <li class="relative md:flex md:flex-1">
+        <!-- Inactive Step -->
+        <a href="words-edit.html" class="group flex items-center">
+          <span class="flex items-center px-6 py-4 text-sm font-medium">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">02</span>
+            </span>
+            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Sõnad</span>
+          </span>
+        </a>
+        <!-- Arrow separator for lg screens and up -->
+        <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+          <svg class="size-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </li>
+      <li class="relative md:flex md:flex-1">
+        <!-- Inactive Step -->
+        <a href="save-share.html" class="group flex items-center">
+          <span class="flex items-center px-6 py-4 text-sm font-medium">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">03</span>
+            </span>
+            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Salvestamine</span>
+          </span>
+        </a>
+      </li>
+    </ol>
+  </nav>
+  <!-- End Progress bar -->
+  
+<div class="max-w-3xl mx-auto flex">
+  <!-- Main Content -->
+  <div class="w-full">
+
+    <h2 class="text-xl font-semibold mb-4">Vali laotus</h2>
+
+    <div class="mb-4">
+      <label class="font-semibold">Grid Size:</label>
+      <select id="gridSize" class="border p-1 rounded ml-2">
+        <option value="1">1 Square</option>
+        <option value="2">2 Squares</option>
+        <option value="4" selected>4 Squares</option>
+        <option value="6">6 Squares</option>
+        <option value="8">8 Squares</option>
+        <option value="12">12 Squares</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="font-semibold">Pick a word:</label>
+      <select id="wordPicker" class="border p-1 rounded ml-2">
+        <option value="">-- Select Word --</option>
+      </select>
+      <button id="addBtn" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Add</button>
+    </div>
+
+    <button id="nextBtn" class="bg-blue-500 text-white px-3 py-1 rounded">Next</button>
+
+    <div id="gridContainer" class="grid grid-cols-2 gap-2"></div>
+
+    <div id="videoPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+      <div class="bg-white p-4 rounded relative">
+        <button id="closePopup" class="absolute top-2 right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">&times;</button>
+        <video id="popupVideo" src="" controls class="max-w-full h-auto"></video>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

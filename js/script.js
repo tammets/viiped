@@ -63,7 +63,7 @@ const words = [
         // Render empty cells.
         for (let i = 0; i < gridSize; i++) {
           const div = document.createElement('div');
-          div.className = 'border p-4 rounded bg-white text-center shadow';
+          div.className = 'border border-dashed p-4 rounded bg-white text-center shadow';
           div.innerHTML = '<span class="text-gray-400">Sisu puudub</span>';
           gridContainer.appendChild(div);
         }
@@ -130,17 +130,29 @@ const words = [
         gridContainer.innerHTML = '';
         for (let i = 0; i < gridSize; i++) {
           const div = document.createElement('div');
-          div.className = 'border p-4 rounded bg-white text-center shadow';
+          div.className = 'border border-dashed p-4 rounded bg-white text-center shadow';
           if (selectedWords[i]) {
             div.innerHTML = `
               <img src="${selectedWords[i].sign}" class="inline-block w-46 h-36 cursor-pointer" onclick="playVideo('${selectedWords[i].video}')">
               <div class="font-semibold">${selectedWords[i].word}</div>
-              <button onclick="move(${i}, -1)" class="mt-2 px-2 bg-gray-200 rounded">←</button>
-              <button onclick="remove(${i})" class="mt-2 px-2 bg-red-300 rounded">–</button>
-              <button onclick="move(${i}, 1)" class="mt-2 px-2 bg-gray-200 rounded">→</button>
+              <button onclick="move(${i}, -1)" class="mt-2 px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </button>
+              <button onclick="remove(${i})" class="mt-2 px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </button>
+              <button onclick="move(${i}, 1)" class="mt-2 px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </button>
             `;
           } else {
-            div.innerHTML = '<span class="text-gray-400">Empty</span>';
+            div.innerHTML = '<span class="text-gray-400">Sisu puudub</span>';
           }
           gridContainer.appendChild(div);
         }
@@ -209,14 +221,14 @@ const words = [
       
       for (let i = 0; i < gridSize; i++) {
         const div = document.createElement('div');
-        div.className = 'border p-4 rounded bg-white text-center shadow';
+        div.className = 'border p-4 border-dashed rounded bg-white text-center shadow';
         if (savedSelectedWords[i]) {
           div.innerHTML = `
             <img src="${savedSelectedWords[i].sign}" class="inline-block w-46 h-36 cursor-pointer" onclick="playVideo('${savedSelectedWords[i].video}')">
             <div class="font-semibold">${savedSelectedWords[i].word}</div>
           `;
         } else {
-          div.innerHTML = '<span class="text-gray-400">Empty</span>';
+          div.innerHTML = '<span class="text-gray-400">Sisu puudub</span>';
         }
         gridContainer.appendChild(div);
       }

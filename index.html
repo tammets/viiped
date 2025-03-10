@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Language Grid</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8">
+<div class="max-w-3xl mx-auto">
+
+  <h2 class="text-xl font-semibold mb-4">Sign Language Grid</h2>
+
+  <div class="mb-4">
+    <label class="font-semibold">Grid Size:</label>
+    <select id="gridSize" class="border p-1 rounded ml-2">
+      <option value="1">1 Square</option>
+      <option value="2">2 Squares</option>
+      <option value="4" selected>4 Squares</option>
+      <option value="6">6 Squares</option>
+      <option value="8">8 Squares</option>
+      <option value="12">12 Squares</option>
+    </select>
+  </div>
+
+  <div class="mb-4">
+    <label class="font-semibold">Pick a word:</label>
+    <select id="wordPicker" class="border p-1 rounded ml-2">
+      <option value="">-- Select Word --</option>
+    </select>
+    <button id="addBtn" class="bg-blue-500 text-white px-3 py-1 rounded ml-2">Add</button>
+  </div>
+
+  <div id="gridContainer" class="grid grid-cols-2 gap-2"></div>
+
+  <div id="videoPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+    <div class="bg-white p-4 rounded relative">
+      <button id="closePopup" class="absolute top-2 right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">&times;</button>
+      <video id="popupVideo" src="" controls class="max-w-full h-auto"></video>
+    </div>
+  </div>
+
+<script>
+const words = [
+  { word: "Kapsas", sign: "assets/images/kapsas.gif", video: "assets/videos/kapsas.mp4" },
+  { word: "Kartul", sign: "assets/images/kartul.gif", video: "assets/videos/kartul.mp4" },
+  { word: "Kohv", sign: "assets/images/kohv.gif", video: "assets/videos/kohv.mp4" },
+  { word: "Komm", sign: "assets/images/komm.gif", video: "assets/videos/komm.mp4" },
+  { word: "Küpsis", sign: "assets/images/küpsis.gif", video: "assets/videos/küpsis.mp4" },
+  { word: "Leib", sign: "assets/images/leib.gif", video: "assets/videos/leib.mp4" },
+  { word: "Liha", sign: "assets/images/liha.gif", video: "assets/videos/liha.mp4" },
+  { word: "Muna", sign: "assets/images/muna.gif", video: "assets/videos/muna.mp4" },
+  { word: "Piim", sign: "assets/images/piim.gif", video: "assets/videos/piim.mp4" },
+  { word: "Sai", sign: "assets/images/sai.gif", video: "assets/videos/sai.mp4" },
+  { word: "Sool", sign: "assets/images/sool.gif", video: "assets/videos/sool.mp4" },
+  { word: "Suhkur", sign: "assets/images/suhkur.gif", video: "assets/videos/suhkur.mp4" },
+  { word: "Vesi-tee", sign: "assets/images/vesi,-tee.gif", video: "assets/videos/vesi-tee.mp4" },
+  { word: "Või", sign: "assets/images/või.gif", video: "assets/videos/või.mp4" },
+  { word: "Õun", sign: "assets/images/õun.gif", video: "assets/videos/õun.mp4" },
+];
+
+let selectedWords = [];
+
+const gridSizeEl = document.getElementById('gridSize');
+const wordPickerEl = document.getElementById('wordPicker');
+const gridContainer = document.getElementById('gridContainer');
+const addBtnEl = document.getElementById('addBtn');
+const videoPopup = document.getElementById('videoPopup');
+const popupVideo = document.getElementById('popupVideo');
+const closePopup = document.getElementById('closePopup');
+
+words.forEach(item => {
+  const opt = document.createElement('option');
+  opt.value = item.word;
+  opt.textContent = item.word;
+  wordPickerEl.appendChild(opt);
+});
+
+function renderGrid() {
+  const gridSize = parseInt(gridSizeEl.value);
+  gridContainer.className = `grid gap-2 grid-cols-${gridSize <= 4 ? gridSize : 4}`;
+  gridContainer.innerHTML = '';
+
+  for (let i = 0; i < gridSize; i++) {
+    const div = document.createElement('div');
+    div.className = 'border p-4 rounded bg-white text-center shadow';
+
+    if (selectedWords[i]) {
+      div.innerHTML = `
+        <img src="${selectedWords[i].sign}" class="inline-block w-46 h-36 cursor-pointer" onclick="playVideo('${selectedWords[i].video}')">
+        <div class="font-semibold">${selectedWords[i].word}</div>
+        <button onclick="move(${i}, -1)" class="mt-2 px-2 bg-gray-200 rounded">←</button>
+        <button onclick="remove(${i})" class="mt-2 px-2 bg-red-300 rounded">–</button>
+        <button onclick="move(${i}, 1)" class="mt-2 px-2 bg-gray-200 rounded">→</button>
+      `;
+    } else {
+      div.innerHTML = '<span class="text-gray-400">Empty</span>';
+    }
+
+    gridContainer.appendChild(div);
+  }
+}
+
+function move(index, direction) {
+  const newIndex = index + direction;
+  if (newIndex < 0 || newIndex >= selectedWords.length) return;
+  [selectedWords[index], selectedWords[newIndex]] = [selectedWords[newIndex], selectedWords[index]];
+  renderGrid();
+}
+
+function remove(index) {
+  selectedWords.splice(index, 1);
+  renderGrid();
+}
+
+function playVideo(src) {
+  popupVideo.src = src;
+  videoPopup.classList.remove('hidden');
+  videoPopup.classList.add('flex');
+}
+
+closePopup.onclick = () => {
+  videoPopup.classList.add('hidden');
+  videoPopup.classList.remove('flex');
+  popupVideo.pause();
+};
+
+addBtnEl.onclick = function() {
+  const word = wordPickerEl.value;
+  if (!word || selectedWords.length >= parseInt(gridSizeEl.value)) return;
+  const foundWord = words.find(w => w.word === word);
+  if (foundWord) {
+    selectedWords.push(foundWord);
+    renderGrid();
+  }
+};
+
+gridSizeEl.onchange = () => {
+  selectedWords = [];
+  renderGrid();
+};
+
+renderGrid();
+</script>
+</body>
+</html>

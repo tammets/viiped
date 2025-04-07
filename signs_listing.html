@@ -59,7 +59,7 @@
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
         <!-- New row: 2 Dropdowns and 1 Button -->
-        <div class="mt-4 grid grid-cols-3 gap-4">
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
           <!-- Dropdown 1: Location -->
           <div>
             <label for="location" class="block text-sm font-medium text-gray-900">Otsisõna</label>
@@ -117,37 +117,39 @@
           </div>
         </div>
 
-        <div class="flex items-center space-x-2 mb-4 mt-4">
-          <button class="px-2 py-1 text-sm font-bold text-white bg-gray-700 hover:bg-gray-600 focus:outline-none">Kõik</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">A</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">B</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">C</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">D</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">E</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">F</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">G</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">H</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">I</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">J</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">K</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">L</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">M</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">N</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">O</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">P</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">R</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">S</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Z</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">T</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">U</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">V</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">W</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">X</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Y</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Ä</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Ö</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Ü</button>
-            <button class="px-2 py-1 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Õ</button>
+        <label for="location" class="block text-sm font-medium text-gray-900 mt-4">Või vali täht:</label>
+
+        <div class="flex flex-wrap items-center gap-2 mb-4 mt-4">
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-white bg-gray-700 hover:bg-gray-600 focus:outline-none">Kõik</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">A</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">B</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">C</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">D</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">E</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">F</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">G</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">H</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">I</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">J</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">K</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">L</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">M</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">N</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">O</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">P</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">R</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">S</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Z</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">T</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">U</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">V</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">W</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">X</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Y</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Ä</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Ö</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Ü</button>
+          <button class="px-2 py-1 mb-2 text-sm font-bold text-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none">Õ</button>
         </div>
 
         <div class="relative">
@@ -156,12 +158,15 @@
           </div>
         </div>
 
+        <div class="text-sm text-gray-400 text-left mt-8">
+          Näitab 6 tulemust
+        </div>
+
         <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           <!-- Card 1 -->
           <div class="divide-y divide-gray-200 overflow-hidden border border-gray-300 rounded-md bg-white shadow-sm transition transform duration-300 hover:scale-105">
             <div class="border-b border-gray-100 bg-gray-50 px-4 py-5 sm:px-6">
               <h3 class="text-base font-semibold text-gray-900">Kapsas</h3>
-                <p class="mt-1 text-sm text-gray-500">ASL, Sign Language, Manual Communication, Hand Gestures, Deaf Culture</p>
             </div>
             <div class="px-4 py-5 sm:p-6">
               <img src="assets/images/kapsas.gif" alt="Random Image" class="w-full h-48 object-cover mb-3">
@@ -171,14 +176,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
               </svg>
-              Söök, jook
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Söök, jook</span>
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Tegevused, tegusõnad</span>
             </div>
           </div>
           <!-- Card 2 -->
           <div class="divide-y divide-gray-200 overflow-hidden border border-gray-300 rounded-md bg-white shadow-sm transition transform duration-300 hover:scale-105">
             <div class="border-b border-gray-100 bg-gray-50 px-4 py-5 sm:px-6">
               <h3 class="text-base font-semibold text-gray-900">Kartul</h3>
-              <p class="mt-1 text-sm text-gray-500">ASL, Sign Language, Manual Communication, Hand Gestures, Deaf Culture</p>
             </div>
             <div class="px-4 py-5 sm:p-6">
               <img src="assets/images/kartul.gif" alt="Random Image" class="w-full h-48 object-cover mb-3">
@@ -188,14 +193,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
               </svg>
-              Söök, jook
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Söök, jook</span>
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Tegevused, tegusõnad</span>
             </div>
           </div>
           <!-- Card 3 -->
           <div class="divide-y divide-gray-200 overflow-hidden border border-gray-300 rounded-md bg-white shadow-sm transition transform duration-300 hover:scale-105">
             <div class="border-b border-gray-100 bg-gray-50 px-4 py-5 sm:px-6">
               <h3 class="text-base font-semibold text-gray-900">Kohv</h3>
-              <p class="mt-1 text-sm text-gray-500">ASL, Sign Language, Manual Communication, Hand Gestures, Deaf Culture</p>
             </div>
             <div class="px-4 py-5 sm:p-6">
               <img src="assets/images/kohv.gif" alt="Random Image" class="w-full h-48 object-cover mb-3">
@@ -205,14 +210,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
               </svg>
-              Söök, jook
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Söök, jook</span>
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Tegevused, tegusõnad</span>
             </div>
           </div>
           <!-- Card 4 -->
           <div class="divide-y divide-gray-200 overflow-hidden border border-gray-300 rounded-md bg-white shadow-sm transition transform duration-300 hover:scale-105">
             <div class="border-b border-gray-100 bg-gray-50 px-4 py-5 sm:px-6">
               <h3 class="text-base font-semibold text-gray-900">Komm</h3>
-              <p class="mt-1 text-sm text-gray-500">ASL, Sign Language, Manual Communication, Hand Gestures, Deaf Culture</p>
             </div>
             <div class="px-4 py-5 sm:p-6">
               <img src="assets/images/komm.gif" alt="Random Image" class="w-full h-48 object-cover mb-3">
@@ -222,14 +227,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
               </svg>
-              Söök, jook
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Söök, jook</span>
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Tegevused, tegusõnad</span>
             </div>
           </div>
           <!-- Card 5 -->
           <div class="divide-y divide-gray-200 overflow-hidden border border-gray-300 rounded-md bg-white shadow-sm transition transform duration-300 hover:scale-105">
             <div class="border-b border-gray-100 bg-gray-50 px-4 py-5 sm:px-6">
               <h3 class="text-base font-semibold text-gray-900">Küpsis</h3>
-              <p class="mt-1 text-sm text-gray-500">ASL, Sign Language, Manual Communication, Hand Gestures, Deaf Culture</p>
             </div>
             <div class="px-4 py-5 sm:p-6">
               <img src="assets/images/küpsis.gif" alt="Random Image" class="w-full h-48 object-cover mb-3">
@@ -239,14 +244,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
               </svg>
-              Söök, jook
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Söök, jook</span>
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Tegevused, tegusõnad</span>
             </div>
           </div>
           <!-- Card 6 -->
           <div class="divide-y divide-gray-200 overflow-hidden border border-gray-300 rounded-md bg-white shadow-sm transition transform duration-300 hover:scale-105">
             <div class="border-b border-gray-100 bg-gray-50 px-4 py-5 sm:px-6">
               <h3 class="text-base font-semibold text-gray-900">Leib</h3>
-              <p class="mt-1 text-sm text-gray-500">ASL, Sign Language, Manual Communication, Hand Gestures, Deaf Culture</p>
             </div>
             <div class="px-4 py-5 sm:p-6">
               <img src="assets/images/leib.gif" alt="Random Image" class="w-full h-48 object-cover mb-3">
@@ -256,7 +261,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
               </svg>
-              Söök, jook
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Söök, jook</span>
+              <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">Tegevused, tegusõnad</span>
             </div>
           </div>
         </div>

@@ -250,4 +250,50 @@ const words = [
         };
       }
     }
+
+    // ----- SHARE PAGE -----
+    else if (currentURL.includes('share.html')) {
+      // Render the same selected images as on save-share page
+      const savedGridSize = localStorage.getItem('gridSize') || '4';
+      const gridSize = parseInt(savedGridSize);
+      const savedSelectedWords = JSON.parse(localStorage.getItem('selectedWords')) || [];
+
+      if (!gridContainer) return;
+
+      gridContainer.className = `grid gap-2 grid-cols-${gridSize <= 4 ? gridSize : 4}`;
+      gridContainer.innerHTML = '';
+
+      for (let i = 0; i < gridSize; i++) {
+        const div = document.createElement('div');
+        div.className = 'border p-4 border-dashed rounded bg-white text-center shadow';
+        if (savedSelectedWords[i]) {
+          div.innerHTML = `
+            <img src="${savedSelectedWords[i].sign}" class="inline-block w-46 h-36 cursor-pointer" onclick="playVideo('${savedSelectedWords[i].video}')">
+            <div class="font-semibold">${savedSelectedWords[i].word}</div>
+          `;
+        } else {
+          div.innerHTML = '<span class="text-gray-400">Sisu puudub</span>';
+        }
+        gridContainer.appendChild(div);
+      }
+
+      // Setup video popup if present on the page
+      const popupVideo = document.getElementById('popupVideo');
+      const videoPopup = document.getElementById('videoPopup');
+      const closePopup = document.getElementById('closePopup');
+      if (popupVideo && videoPopup) {
+        window.playVideo = function(src) {
+          popupVideo.src = src;
+          videoPopup.classList.remove('hidden');
+          videoPopup.classList.add('flex');
+        }
+      }
+      if (closePopup) {
+        closePopup.onclick = () => {
+          videoPopup.classList.add('hidden');
+          videoPopup.classList.remove('flex');
+          popupVideo.pause();
+        };
+      }
+    }
   });

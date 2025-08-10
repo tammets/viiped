@@ -50,34 +50,40 @@
         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
           <div class="lg:col-span-5">
             <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Töölehtede koostamise juhend</h2>
-            <p class="mt-4 text-base/7 text-pretty text-gray-600">Allpool on samm-sammuline juhend töölehtede loomiseks. Kui vastust ei leia, vaata ka <a href="instructions.html" class="font-semibold text-indigo-600 hover:text-indigo-500">Juhendid</a> lehte.</p>
+            <p class="mt-4 text-base/7 text-pretty text-gray-600">Allpool on samm-sammuline juhend töölehtede loomiseks. Kui vastust ei leia, vaata ka <span class="font-semibold">Juhendid</span> lehte.</p>
           </div>
           <div class="mt-10 lg:col-span-7 lg:mt-0">
             <dl class="space-y-10">
               <div>
-                <dt class="text-base/7 font-semibold text-gray-900">Samm 1: Vali pinnalaotus</dt>
-                <dd class="mt-2 text-base/7 text-gray-600">Ava <a href="grid-edit.html" class="text-indigo-600 hover:text-indigo-500 font-medium">Pinnalaotus</a> ja vali sobiv ruutude arv (nt 4, 6, 8 või 12). Valik salvestub automaatselt ning määrab, mitu pilti lehele mahub.</dd>
+                <dt class="text-lg font-semibold tracking-tight text-gray-900 border-l-4 border-indigo-600 pl-3 rounded-sm">Samm 1: Vali pinnalaotus</dt>
+                <dd class="mt-2 text-base/7 text-gray-600">Ava <span class="font-semibold">Pinnalaotus</span> ja vali sobiv ruutude arv (nt 4, 6, 8 või 12). Valik salvestub automaatselt ning määrab, mitu pilti lehele mahub.</dd>
+              </div>
+              <!-- Visual guide GIF between step 1 and step 2 -->
+              <div>
+                <img src="assets/instructions/juhend1.gif" alt="Pinnalaotuse valimise juhend" class="rounded-lg shadow max-w-full h-auto">
               </div>
               <div>
-                <dt class="text-base/7 font-semibold text-gray-900">Samm 2: Lisa sõnad ja pildid</dt>
-                <dd class="mt-2 text-base/7 text-gray-600">Ava <a href="words-edit.html" class="text-indigo-600 hover:text-indigo-500 font-medium">Sõnad</a>, vali rippmenüüst sobiv sõna ja klõpsa „Lisa”. Pildi all kuvatakse sõna nimi; klõps pildil avab selle video.</dd>
+                <dt class="text-lg font-semibold tracking-tight text-gray-900 border-l-4 border-indigo-600 pl-3 rounded-sm">Samm 2: Lisa sõnad ja pildid</dt>
+                <dd class="mt-2 text-base/7 text-gray-600">Ava <span class="font-semibold">Sõnad</span>, vali rippmenüüst sobiv sõna ja klõpsa „Lisa”. Pildi all kuvatakse sõna nimi; klõps pildil avab selle video.</dd>
               </div>
               <div>
-                <dt class="text-base/7 font-semibold text-gray-900">Samm 3: Korrasta ruudustik</dt>
+                <img src="assets/instructions/juhend2.gif" alt="Sõnade lisamise juhend" class="rounded-lg shadow max-w-full h-auto">
+              </div>
+              <div>
+                <dt class="text-lg font-semibold tracking-tight text-gray-900 border-l-4 border-indigo-600 pl-3 rounded-sm">Samm 3: Korrasta ruudustik</dt>
                 <dd class="mt-2 text-base/7 text-gray-600">Liiguta pilte noole-ikone abil vasakule/paremale või eemalda mittevajalikud. Kujundus järgib varem valitud ruutude arvu.</dd>
               </div>
               <div>
-                <dt class="text-base/7 font-semibold text-gray-900">Samm 4: Vaade, jagamine ja printimine</dt>
-                <dd class="mt-2 text-base/7 text-gray-600">Lehel <a href="save-share.html" class="text-indigo-600 hover:text-indigo-500 font-medium">Salvestamine ja jagamine</a> saad: kopeerida jagatava lingi (Kopeeri), salvestada JPG (lehel <a href="share.html" class="text-indigo-600 hover:text-indigo-500 font-medium">Jaga</a>) ja printida töölehe (Prindi).</dd>
+                <img src="assets/instructions/juhend3.gif" alt="Ruudustiku korrastamise juhend" class="rounded-lg shadow max-w-full h-auto">
               </div>
               <div>
-                <dt class="text-base/7 font-semibold text-gray-900">Kuidas salvestada JPG-ina?</dt>
-                <dd class="mt-2 text-base/7 text-gray-600">Ava „Jaga” leht ja klõpsa nuppu „Salvesta”. Süsteem koostab JPG-faili ainult piltidest (sildid peidetakse) ning käivitab allalaadimise. Kui automaatne allalaadimine on piiratud, avatakse pilt uues sakis.</dd>
+                <dt class="text-lg font-semibold tracking-tight text-gray-900 border-l-4 border-indigo-600 pl-3 rounded-sm">Samm 4: Vaade, jagamine ja printimine</dt>
+                <dd class="mt-2 text-base/7 text-gray-600">Lehel <span class="font-semibold">Salvestamine ja jagamine</span> saad: kopeerida jagatava lingi (Kopeeri), salvestada JPG (lehel <span class="font-semibold">Jaga</span>) ja printida töölehe (Prindi).</dd>
               </div>
               <div>
-                <dt class="text-base/7 font-semibold text-gray-900">Levinud probleemid</dt>
-                <dd class="mt-2 text-base/7 text-gray-600">Kui salvestus ei alga, käivita projekt kohaliku serverina (nt <code>python3 -m http.server</code>) ja ava leht <code>http://localhost:8000</code>. Video „tainted media” hoiatusi välditakse, jättes videoelemendid pildilt välja.</dd>
+                <img src="assets/instructions/juhend4.gif" alt="Salvestamise ja jagamise juhend" class="rounded-lg shadow max-w-full h-auto">
               </div>
+              
             </dl>
           </div>
         </div>

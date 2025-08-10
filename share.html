@@ -9,6 +9,10 @@
         display: none;
       }
     }
+    /* Hide labels under images only during export */
+    .export-only-images .font-semibold {
+      display: none !important;
+    }
   </style>
 </head>
 <body class="">
@@ -90,6 +94,8 @@
 </footer>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- html2canvas for exporting DOM to image -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="js/script.js"></script>
 <script>
 // Function to copy URL to clipboard
@@ -120,10 +126,82 @@ function copyUrl(buttonEl) {
 
 // Function to save/share
 function saveShare(buttonEl) {
-  // Placeholder for save functionality
   const originalText = buttonEl.textContent;
-  buttonEl.textContent = 'Salvestatud!';
-  setTimeout(() => { buttonEl.textContent = originalText; }, 1500);
+  const grid = document.getElementById('gridContainer');
+  if (!grid) return;
+
+  // Visual feedback
+  buttonEl.disabled = true;
+  buttonEl.textContent = 'Salvestan...';
+
+  // Hide labels during export so only images are captured
+  grid.classList.add('export-only-images');
+
+  // Use html2canvas to capture the grid
+  html2canvas(grid, {
+    backgroundColor: '#ffffff',
+    useCORS: true,
+    scale: Math.min(2, window.devicePixelRatio || 1), // good quality without huge files
+    ignoreElements: (el) => {
+      // Skip any video elements or the video popup container to avoid tainted media warnings
+      if (!el) return false;
+      const tag = (el.tagName || '').toLowerCase();
+      if (tag === 'video' || el.id === 'videoPopup') return true;
+      // Also skip descendants of the video popup
+      try {
+        return !!(el.closest && el.closest('#videoPopup'));
+      } catch (_) {
+        return false;
+      }
+    }
+  }).then(canvas => {
+    // Restore labels
+    grid.classList.remove('export-only-images');
+
+    // Try Blob first; also prepare a dataURL fallback up-front
+    const dataUrl = (() => {
+      try { return canvas.toDataURL('image/jpeg', 0.95); } catch (_) { return null; }
+    })();
+
+    try {
+      canvas.toBlob(blob => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          triggerDownload(url, 'viipekomplekt.jpg', /*isObjectUrl*/ true, dataUrl);
+        } else if (dataUrl) {
+          triggerDownload(dataUrl, 'viipekomplekt.jpg', /*isObjectUrl*/ false, dataUrl);
+        }
+      }, 'image/jpeg', 0.95);
+    } catch (_) {
+      if (dataUrl) triggerDownload(dataUrl, 'viipekomplekt.jpg', /*isObjectUrl*/ false, dataUrl);
+    }
+  }).catch(() => {
+    grid.classList.remove('export-only-images');
+  }).finally(() => {
+    buttonEl.disabled = false;
+    buttonEl.textContent = originalText;
+  });
+}
+
+function triggerDownload(url, filename, isObjectUrl = false, fallbackDataUrl = null) {
+  const link = document.createElement('a');
+  link.style.display = 'none';
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  try {
+    link.click();
+  } catch (_) {
+    // As a fallback (Safari or file:// protocol), open in a new tab
+    try {
+      window.open(fallbackDataUrl || url, '_blank');
+    } catch (_) {}
+  } finally {
+    link.remove();
+    if (isObjectUrl) {
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+  }
 }
 
 // Generate a unique share URL when page loads

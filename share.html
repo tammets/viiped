@@ -19,24 +19,24 @@
   <!-- Main Content -->
   <div class="w-full">
 
-    <h2 class="text-xl font-semibold mb-4">Viipekomplekt</h2>
+    <h2 class="text-xl font-semibold mb-4 mt-20">Viipekomplekt</h2>
 
     <div id="gridContainer" class="grid grid-cols-2 gap-2"></div>
 
     <!-- Share Controls -->
     <div class="share-controls mt-8 p-4 bg-gray-50 rounded-lg">
-      <h3 class="text-lg font-medium mb-4">Jaga oma komplekti</h3>
+      <h3 class="text-lg font-medium mb-4">Viipekomplekti jagamine</h3>
       
       <!-- URL Copy + Save on the same line -->
       <div class="mb-2">
         <label for="shareUrl" class="block text-sm font-medium text-gray-700 mb-2">Jagatav link:</label>
         <div class="flex">
           <input type="text" id="shareUrl" value="https://example.com/share/12345" readonly 
-                 class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
+                 class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white">
           <button onclick="copyUrl(this)" 
-                  class="bg-blue-600 text-white px-4 py-2 border border-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Kopeeri</button>
+                  class="bg-indigo-600 text-white px-4 py-2 border border-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Kopeeri</button>
           <button onclick="saveShare(this)" 
-                  class="bg-blue-600 text-white px-4 py-2 rounded-r-md border border-l-0 border-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Salvesta</button>
+                  class="bg-indigo-600 text-white px-4 py-2 rounded-r-md border border-l-0 border-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Salvesta</button>
         </div>
       </div>
     </div>
